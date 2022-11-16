@@ -1,9 +1,8 @@
-import {MOVIE_TYPES, TRENDING_MOVIE_TYPES} from "./TrendingMovies.type";
+import {MOVIE_TYPES} from "./TrendingMovies.type";
 
 export const HOME_MOVIES_INITIAL_STATE ={
     trendingMovies:[],
     trendingMoviesDay:[],
-    allMovies:[],
     isLoading: false,
     error: null
 }
@@ -30,7 +29,6 @@ export const movieReducer =(state = HOME_MOVIES_INITIAL_STATE, action={})=>{
                 isLoading: false,
                 error: payload
             }
-
         default:
             return state
     }
