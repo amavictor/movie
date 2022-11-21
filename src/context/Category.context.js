@@ -4,10 +4,10 @@ export const PageContext = createContext("")
 
 
 export const PageProvider =({children})=>{
-    const [isOpen, setIsOpen] = useState(false)
+    const [noNav, setNoNav] = useState(false)
     const value = {
-        isOpen,
-        setIsOpen
+        noNav,
+        setNoNav
     }
     return <PageContext.Provider value={value}>{children}</PageContext.Provider>
 }

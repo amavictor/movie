@@ -1,4 +1,5 @@
 import {
+    BackDrop,
     LikeAndTrailer,
     ModalDetails,
     MovieCardContainer,
@@ -8,7 +9,7 @@ import {
     StyledModal
 } from "./MovieCard.styles";
 import {Skeleton} from "@mui/material";
-import {useState} from "react";
+import {useContext, useState} from "react";
 import styled from "styled-components"
 import {BaseModalBackground} from "styled-react-modal";
 import {buildStyles, CircularProgressbar} from 'react-circular-progressbar';
@@ -16,7 +17,12 @@ import 'react-circular-progressbar/dist/styles.css';
 import {Button} from "../Button/Button";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import {Link} from "react-router-dom";
+import {Link, useLocation, useNavigate, useParams} from "react-router-dom";
+import {toast, ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import ReactPlayer from "react-player/lazy";
+import axios from "axios";
+import {PageContext} from "../../context/Category.context";
 
 
 
@@ -24,23 +30,54 @@ export const FadingBackground = styled(BaseModalBackground)`
       opacity: ${(props) => props.opacity};
       transition: all 0.3s ease-in-out;
     `
+
+export const ratingChecker=(rating)=>{
+    if(Math.floor(rating) <= 5){
+        return "red"
+    }
+    else if(Math.floor(rating) > 5 && Math.floor(rating) <= 7){
+        return "yellow"
+    }
+    else if (Math.floor(rating) > 7 && Math.floor(rating) <=10){
+        return "green"
+    }
+}
+
 export const MovieCard =(
     {
+        id,
         image,
         title,
         backDrop,
         description,
         rating,
-        releaseDate
+        releaseDate,
+        movieId
     }
     )=>{
 
     const [isOpen, setIsOpen] = useState(false);
     const [opacity, setOpacity] = useState(0);
     const [like,setLike] = useState(false)
+    const [parameter, setParameter] = useState("")
+
+    const params = useParams()
+    const navigate = useNavigate()
+    const location = useLocation()
+
+    ratingChecker(rating)
+
     function toggleModal(e) {
+        setParameter(title)
         setOpacity(0);
         setIsOpen(!isOpen);
+    }
+    function navigateToVideo(){
+        params.movieName = parameter
+        console.log(params.movieName)
+        navigate(`${location.pathname}/${parameter}/watch`,{replace:false, state:{
+                movieId
+            }})
     }
     function afterOpen() {
         setTimeout(() => {
@@ -53,42 +90,37 @@ export const MovieCard =(
             setTimeout(resolve, 300);
         });
     }
-    const BackDrop = styled.div`
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 30%, rgba(0, 0, 0,  0.3)), url(${backDrop});
-      background-repeat: no-repeat;
-      background-size: cover;
-      height: 45vh;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      h5{
-        font-size: 24px;
-      }
-      p{
-        line-height: 1.5;
-        font-size: 14px;
-      }
-      img{
-        width: 170px;
-        height: 200px;
-        object-fit: cover;
-      }
-    `
 
-    const ratingChecker=(rating)=>{
-        if(Math.floor(rating) <= 5){
-            return "red"
-        }
-        else if(Math.floor(rating) > 5 && Math.floor(rating) <= 7){
-            return "yellow"
-        }
-        else if (Math.floor(rating) > 7 && Math.floor(rating) <=10){
-            return "green"
-        }
-    }
+
+
+
 
     const toggleLike =()=>{
+
+        like ? toast.error("Removed from like",{
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            closeButton: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            type:"error",
+            position: toast.POSITION.TOP_RIGHT,
+        }) :
+        toast.success("Added to Like",{
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            closeButton: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            type:"success",
+            position: toast.POSITION.TOP_RIGHT,
+        })
         return setLike(!like)
     }
     return(
@@ -119,57 +151,64 @@ export const MovieCard =(
                 opacity={opacity}
                 backgroundProps={{ opacity }}
             >
-                <div>
-                    <BackDrop>
-                        <ModalDetails>
-                            <img src={image}/>
-                            <div>
-                                <h5>{title}</h5>
-                                <p>{description}</p>
-                                <RatingContainer>
-                                    <Rating>
-                                        <p>Rating</p>
-                                        <CircularProgressbar
-                                            value={rating}
-                                            text={`${rating}`}
-                                            maxValue={10}
-                                            styles={buildStyles({
-                                                strokeLinecap: "butt",
-                                                textColor: ratingChecker(rating),
-                                                pathColor: ratingChecker(rating),
-                                                textSize: "25px"
-                                            })}
-                                        />
-                                    </Rating>
-                                    <ReleaseDate>
-                                        <p>Release date:</p>
-                                        <p>{releaseDate}</p>
-                                    </ReleaseDate>
-                                </RatingContainer>
-                            </div>
-                        </ModalDetails>
-                    </BackDrop>
-                </div>
-                <LikeAndTrailer>
-                    <div>
-                        <div onClick={toggleLike}>
-
-                            {
-                                like ? <FavoriteIcon className={"red"}/>
-                                    :
-                                    <FavoriteBorderIcon className={"red"}/>
-                            }
-
+                {
+                    <>
+                        <div>
+                            <BackDrop backDrop={backDrop}>
+                                <ModalDetails>
+                                    <img src={image}/>
+                                    <div>
+                                        <h5>{title}</h5>
+                                        <p>{description}</p>
+                                        <RatingContainer>
+                                            <Rating>
+                                                <p>Rating</p>
+                                                <CircularProgressbar
+                                                    value={rating}
+                                                    text={`${rating}`}
+                                                    maxValue={10}
+                                                    styles={buildStyles({
+                                                        strokeLinecap: "butt",
+                                                        textColor: ratingChecker(rating),
+                                                        pathColor: ratingChecker(rating),
+                                                        textSize: "25px"
+                                                    })}
+                                                />
+                                            </Rating>
+                                            <ReleaseDate>
+                                                <p>Release date:</p>
+                                                <p>{releaseDate}</p>
+                                            </ReleaseDate>
+                                        </RatingContainer>
+                                    </div>
+                                </ModalDetails>
+                            </BackDrop>
                         </div>
+                        <LikeAndTrailer>
+                            <div>
+                                <div onClick={toggleLike}>
 
-                        <Link to={"#"}>Watch trailer</Link>
-                    </div>
+                                    {
+                                        like ? <FavoriteIcon className={"red"}/>
+                                            :
+                                            <FavoriteBorderIcon className={"red"}/>
+                                    }
 
-                    <Button size={"small"}>Watch Now</Button>
+                                </div>
 
-                </LikeAndTrailer>
+                            </div>
+
+                            <Button size={"small"} onClick={navigateToVideo}>Watch Now</Button>
+                        </LikeAndTrailer>
+                        <ToastContainer/>
+
+                    </>
+
+                }
+
 
             </StyledModal>
+
         </>
 
     )

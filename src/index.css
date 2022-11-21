@@ -95,7 +95,6 @@ P{
 
 
 /*Icons color Css*/
-
-.red{
-  color: var(--red);
+.iconSize{
+  font-size: 30px;
 }

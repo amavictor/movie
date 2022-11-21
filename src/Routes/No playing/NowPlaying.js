@@ -7,14 +7,16 @@ import {BASE_URL, IMG_BASE_URL} from "../../utils";
 import {NowPlayingContainer, PageButton, PaginationContainer} from "./nowPlaying.styles";
 import axios from "axios";
 import Modal, {BaseModalBackground, ModalProvider} from "styled-react-modal";
+import {PageContext} from "../../context/Category.context";
 
 
 export const NowPlaying =()=>{
     const nowPlaying = useSelector(selectNowPlayingMovies)
-    console.log(nowPlaying)
     const [pageNumber, setPageNumber] = useState(1)
+    const {setNoNav} = useContext(PageContext)
     const dispatch = useDispatch()
     useEffect(()=>{
+        setNoNav(false)
         /*dispatch(fetchNowPlayingAsync())*/
         axios.get(`${BASE_URL}movie/now_playing?api_key=672e218cbb77d06c47ae1e2d04209fb4&language=en-US&page=${pageNumber}`)
             .then((response)=> dispatch(fetchNowPlaying(response.data.results)))
@@ -41,6 +43,7 @@ export const NowPlaying =()=>{
                                 description={movie.overview}
                                 rating={movie.vote_average}
                                 releaseDate={movie.release_date}
+                                movieId={movie.id}
                             />
                         )
                     }
