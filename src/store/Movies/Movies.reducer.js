@@ -5,6 +5,7 @@ export const MOVIES_INITIAL_STATE ={
     popular:[],
     topRated:[],
     upcomingMovies:[],
+    latest:[]
 
 }
 
@@ -30,6 +31,11 @@ export const allMovieReducer =(state = MOVIES_INITIAL_STATE, action={})=>{
             return {
                 ...state,
                 upcomingMovies: payload
+            }
+        case ALL_MOVIES_TYPES.FETCH_LATEST:
+            return {
+                ...state,
+                latest:payload
             }
         default:
             return state

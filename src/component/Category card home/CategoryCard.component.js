@@ -104,7 +104,7 @@ export const CategoryCardComponent =()=>{
                     categories.map((cat)=>{
                         return(
                             <>
-                                <CategoryCardBody onClick={cat.link}>
+                                <CategoryCardBody onClick={cat.link} key={cat.link}>
                                     <h5>{cat.categoryName}</h5>
                                     {cat.total &&  <p>{`${cat.total} +`}</p> }
                                 </CategoryCardBody>

@@ -3,11 +3,6 @@ import {ModalCard} from "./Modal.styles";
 import {PageContext} from "../../context/Category.context";
 
 export const Modal =()=>{
-
-    const {isOpen, setIsOpen} = useContext(PageContext)
-    const toggleModal=()=>{
-        setIsOpen(!isOpen)
-    }
     return(
         <ModalCard
             isOpen={isOpen}

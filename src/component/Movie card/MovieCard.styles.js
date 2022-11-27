@@ -80,6 +80,11 @@ export const StyledModal = Modal.styled`
 
 
       `
+export const Trailer = styled.div`
+  &:hover{
+    cursor: pointer;
+  }
+`
 export const ModalDetails = styled.div`
       display: flex;
       align-items: center;

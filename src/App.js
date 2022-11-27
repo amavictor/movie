@@ -10,12 +10,21 @@ import {Upcoming} from "./Routes/upcoming/Upcoming";
 import {MovieRoute} from "./Routes/Movie tab/Movie";
 import {MainVideo} from "./Routes/Main Viceo Route/MainVideo";
 import {PageContext} from "./context/Category.context";
+import {
+    fetchLatestAsync,
+    fetchPopularAsync,
+    fetchTopRatedAsync,
+    fetchUpcomingAsync
+} from "./store/Movies/Movies.action";
 
 
 function App() {
     const dispatch = useDispatch()
     useEffect(()=>{
         dispatch(fetchTrendingMoviesAsync())
+        dispatch(fetchUpcomingAsync())
+        dispatch(fetchTopRatedAsync())
+        dispatch(fetchPopularAsync())
 
     },[])
   return (

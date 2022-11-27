@@ -6,11 +6,11 @@ import {useSelector} from "react-redux";
 import {selectTrendingMovies} from "../../store/Trending Movies/TrendingMovies.selector";
 import {SliderCard} from "../Slider card/SliderCard";
 import {IMG_BASE_URL} from "../../utils";
-import {selectLatestMovies, selectUpcomingMovies} from "../../store/Movies/Movies.selector";
+import {selectLatestMovies, selectPopularMovies, selectUpcomingMovies} from "../../store/Movies/Movies.selector";
 
 
-export const HomeSlider=()=>{
-    const latestMovies = useSelector(selectUpcomingMovies)
+export const HomeSliderPopular=()=>{
+    const PopulaMovies = useSelector(selectPopularMovies)
     return(
         <>
             <Swiper
@@ -25,7 +25,7 @@ export const HomeSlider=()=>{
 
             >
                 {
-                    latestMovies?.map((movie)=>
+                    PopulaMovies?.map((movie)=>
                         <SwiperSlide>
                             <SliderCard
                                 key={movie.id}

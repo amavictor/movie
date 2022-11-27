@@ -3,20 +3,29 @@ import {Button} from "../../component/Button/Button";
 import {
     Background,
     ButtonHolder, CategoryCardsContainer,
-    CategoryContainer, CategoryContainerTitle, HomeSlider2Container,
+    CategoryContainer, CategoryContainerTitle, CategorySection, Dark, Glow, Glow2, HomeSlider2Container,
     HomeSliderContainer,
     Intro,
     Line,
     SnapContainer,
-    Trending, TrendingDay, TrendingWeek
+    Trending, TrendingDay, TrendingElements, TrendingWeek, UpcomingMovies
 } from "./Home.styles";
 import{HomeSlider} from "../../component/Slider/HomeSlider";
 import {motion} from "framer-motion";
 import {CategoryCardComponent} from "../../component/Category card home/CategoryCard.component";
 import {HomeSlider2} from "../../component/Slider/HomeSlider2";
+import {useContext} from "react";
+import {PageContext, PageProvider} from "../../context/Category.context";
+import {HomeSliderTopRated} from "../../component/Slider/HomeSliderTopRated";
+import {HomeSliderPopular} from "../../component/Slider/HomeSliderPopular";
+import {HomeVideoSlider} from "../../component/Slider/HomeVideoSlider/HomeVideoSlider";
+import {MainVideoCarouselContainer} from "../Main Viceo Route/MainVideo.styles";
+import {HomeVideoCarouselContainer} from "../../component/Slider/HomeVideoSlider/HomeVideoSlider.styles";
 
 export const Home = () => {
-  return(
+    const {moviesDay, setMoviesDay} = useContext(PageContext)
+
+    return(
       <>
         <header>
             <Background>
@@ -33,32 +42,71 @@ export const Home = () => {
                         </ButtonHolder>
                     </div>
                 </Intro>
+                <div className={"black"}/>
+
+
             </Background>
         </header>
-          <Trending className={"padding"}>
+          <Trending >
+              <Glow/>
               <TrendingWeek>
-                  <h3>Trending movies this week</h3>
-                  <motion.div
-                      drag
-                      dragConstraints={{right:5,left:10,top:5,bottom:1}}
-                      dragTransition={{ bounceStiffness: 400, bounceDamping:50}}
-                      dragElastic={0.1}
-                      className={"motion"}
-                  >
-                      <HomeSliderContainer>
-                          <HomeSlider/>
-                      </HomeSliderContainer>
-                  </motion.div>
+                  <h3>Trending Movies</h3>
+                  <div>
+                      <h4 onClick={()=>setMoviesDay(true)} className={moviesDay && "day"}>Today</h4>
+                      <h4 onClick={()=>setMoviesDay(false)} className={moviesDay ? null : "day"}>This week</h4>
+                  </div>
               </TrendingWeek>
-
-              <TrendingDay>
-                  <h3>Trending movies today</h3>
+              <TrendingElements>
                   <HomeSlider2Container>
                       <HomeSlider2/>
                   </HomeSlider2Container>
-              </TrendingDay>
+              </TrendingElements>
           </Trending>
-          <section className={"padding"}>
+          <UpcomingMovies >
+              <TrendingWeek>
+                  <h3>Upcoming Movies</h3>
+              </TrendingWeek>
+              <TrendingElements>
+                  <HomeSlider2Container>
+                      <HomeSlider/>
+                  </HomeSlider2Container>
+              </TrendingElements>
+              <Glow2/>
+          </UpcomingMovies>
+          <UpcomingMovies >
+              <TrendingWeek>
+                  <h3>Top rated Movies</h3>
+              </TrendingWeek>
+              <TrendingElements>
+                  <HomeSlider2Container>
+                      <HomeSliderTopRated/>
+                  </HomeSlider2Container>
+              </TrendingElements>
+
+          </UpcomingMovies>
+          <UpcomingMovies>
+              <TrendingWeek>
+                  <h3>Popular Movies</h3>
+              </TrendingWeek>
+              <TrendingElements>
+                  <HomeSlider2Container>
+                      <HomeSliderPopular/>
+                  </HomeSlider2Container>
+              </TrendingElements>
+
+          </UpcomingMovies>
+          <UpcomingMovies>
+              <TrendingWeek>
+                  <h3>Popular Trailers</h3>
+              </TrendingWeek>
+              <TrendingElements>
+
+                  <HomeVideoCarouselContainer>
+                      <HomeVideoSlider/>
+                  </HomeVideoCarouselContainer>
+              </TrendingElements>
+          </UpcomingMovies>
+          <CategorySection >
               <CategoryContainer>
                   <CategoryContainerTitle>
                       <h3>Select your favourite category </h3>
@@ -66,9 +114,9 @@ export const Home = () => {
                   </CategoryContainerTitle>
                   <CategoryCardComponent/>
               </CategoryContainer>
-
-          </section>
+              <Glow2/>
+          </CategorySection>
 
       </>
-  )
+    )
 }

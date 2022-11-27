@@ -150,6 +150,7 @@ export const MovieCard =(
                 onBackgroundClick={toggleModal}
                 opacity={opacity}
                 backgroundProps={{ opacity }}
+                allowScroll={true}
             >
                 {
                     <>

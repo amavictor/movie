@@ -4,35 +4,54 @@ import "swiper/css/pagination";
 
 import { Autoplay } from "swiper";
 import {useSelector} from "react-redux";
-import {selectTrendingMoviesDay} from "../../store/Trending Movies/TrendingMovies.selector";
+import {selectTrendingMovies, selectTrendingMoviesDay} from "../../store/Trending Movies/TrendingMovies.selector";
 import {Slide} from "@mui/material";
 import {SliderCard} from "../Slider card/SliderCard";
 import {IMG_BASE_URL} from "../../utils";
+import {useContext} from "react";
+import {PageContext} from "../../context/Category.context";
 
 export const HomeSlider2=()=> {
     const trendingMoviesDay = useSelector(selectTrendingMoviesDay)
-    console.log(trendingMoviesDay)
+    const trendingMovies = useSelector(selectTrendingMovies)
+    const {moviesDay} = useContext(PageContext)
     return (
         <>
             <Swiper
-                slidesPerView={5}
-                spaceBetween={10}
+                slidesPerView={6}
+                spaceBetween={180}
                 autoplay={{
-                    delay: 2000,
+                    delay: 1000,
                     disableOnInteraction: false,
                     pauseOnMouseEnter:true
                 }}
                 modules={[Autoplay]}
-                className="mySwiper"
+
             >
                 {
+                    moviesDay ?
+
                     trendingMoviesDay.map((movie)=>
                         <SwiperSlide>
                             <SliderCard
+                                key={movie.id}
+                                title={movie.title}
                                 image={`${IMG_BASE_URL + movie.poster_path}`}
+                                rating={movie.vote_average}
                             />
                         </SwiperSlide>
                     )
+                        :
+                        trendingMovies.map((movie)=>
+                            <SwiperSlide>
+                                <SliderCard
+                                    key={movie.id}
+                                    title={movie.title}
+                                    image={`${IMG_BASE_URL + movie.poster_path}`}
+                                    rating={movie.vote_average}
+                                />
+                            </SwiperSlide>
+                        )
                 }
             </Swiper>
         </>

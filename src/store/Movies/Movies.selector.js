@@ -18,3 +18,7 @@ export const selectUpcomingMovies = createSelector(
     [selectMovieReducer],
     (movieSlice)=>movieSlice.upcomingMovies
 )
+export const selectLatestMovies = createSelector(
+    [selectMovieReducer],
+    (movieSlice)=>movieSlice.latest
+)
