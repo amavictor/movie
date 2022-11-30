@@ -29,14 +29,19 @@ export const VideoApp = styled.div`
   transition: all .3s ease;
   width: 100%;
   height: 100%;
-  
-  div{
-    top: 50%;
-    left: 50%;
-  }
+  background-color: aliceblue;
   
 `
-
+export const VideoPlayer = styled.div`
+  background-color: green;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  border-radius: 14px;
+  iframe{
+    transition: all .8s ease;
+  }
+`
 export const MovieBody =styled.div`
   height: 200px;
   width: 300px;
@@ -49,20 +54,31 @@ export const MovieBody =styled.div`
   &:hover {
     width: 500px;
     height: 300px;
-
+    cursor: pointer;
     ${ImageDown}{
       img:nth-child(1){
-        opacity: 0;
         height: 300px;
+        filter: brightness(40%);
       }
       img:nth-child(2){
-        opacity: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
       }
     }
     ${VideoApp}{
       width: 500px;
       height: 300px;
       z-index: 40;
+      border: 2px solid var(--red);
+      border-radius: 14px ;
+    }
+    ${VideoPlayer}{
+      iframe{
+        width: 500px;
+        height: 300px;
+      }
     }
     
   }

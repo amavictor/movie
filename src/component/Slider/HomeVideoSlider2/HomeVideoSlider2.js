@@ -1,9 +1,9 @@
-import "./HomeVideoSlider.styles"
-import {ImageDown, MovieBody, VideoApp, VideoPlayer} from "./HomeVideoSlider.styles";
+
+import {ImageDown, MovieBody, VideoApp, VideoPlayer} from "../HomeVideoSlider/HomeVideoSlider.styles";
 import Avat from "../../../assests/images/avatar.jpg"
 import Play from "../../../assests/images/play-button.png"
 import {useSelector} from "react-redux";
-import {selectUpcomingMovies} from "../../../store/Movies/Movies.selector";
+import {selectLatestMovies, selectUpcomingMovies} from "../../../store/Movies/Movies.selector";
 import {useCallback, useEffect, useLayoutEffect, useState} from "react";
 import axios from "axios";
 import {BASE_URL, IMG_BASE_URL} from "../../../utils";
@@ -11,8 +11,8 @@ import ReactPlayer from "react-player/lazy";
 import {Loader} from "../../Loader/Loader";
 import {StyledModal} from "../../Movie card/MovieCard.styles";
 import {StyledModalHome} from "../../../Routes/Home/Home.styles";
-export const HomeVideoSlider=()=>{
-    const latestMovies = useSelector(selectUpcomingMovies)
+export const HomeVideoSlider2=()=>{
+    const latestMovies = useSelector(selectLatestMovies)
     const [key,setKey] = useState("")
     const [vid, setVid] = useState(false)
 
@@ -43,13 +43,13 @@ export const HomeVideoSlider=()=>{
 
     const beforeOpen=(id)=>{
         return (
-        axios
-            .get(`${BASE_URL}movie/${id}/videos?api_key=672e218cbb77d06c47ae1e2d04209fb4&language=en-US`)
-            .then(response=> (setKey(response.data?.results[0]?.key),setVid(false)))
-            .then(response=>setVid(true))
-            .catch(e=>{
+            axios
+                .get(`${BASE_URL}movie/${id}/videos?api_key=672e218cbb77d06c47ae1e2d04209fb4&language=en-US`)
+                .then(response=> (setKey(response.data?.results[0]?.key),setVid(false)))
+                .then(response=>setVid(true))
+                .catch(e=>{
 
-            })
+                })
         )
 
     }

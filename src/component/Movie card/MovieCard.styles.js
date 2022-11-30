@@ -77,8 +77,6 @@ export const StyledModal = Modal.styled`
       -webkit-box-shadow: -1px -1px 53px 19px rgba(251,37,118,0.22);
       -moz-box-shadow: -1px -1px 53px 19px rgba(251,37,118,0.22);}
       }
-
-
       `
 export const Trailer = styled.div`
   &:hover{

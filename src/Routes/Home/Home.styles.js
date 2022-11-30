@@ -1,4 +1,5 @@
 import styled, {keyframes} from "styled-components"
+import Modal from "styled-react-modal";
 
 //slider animation variable
 const slide = keyframes`
@@ -252,3 +253,26 @@ export const TrendingWeek = styled.div`
 export const HomeSlider2Container =styled.div`
   width: 100%;
 `
+
+export const StyledModalHome = Modal.styled`
+      width: 80vw;
+      height: 70vh;    
+       color: white;
+      background-color: var(--backgrouColor);
+      opacity: ${(props) => props.opacity};
+      transition : all 0.3s ease-in-out;
+      animation: 3s ease-in-out 0s both example;
+      border-radius: 12px;
+      p{
+        font-size: 12px;
+      }
+      
+      @keyframes example {
+      from {box-shadow: -1px -1px 53px 19px rgba(251,37,118,0);
+      -webkit-box-shadow: -1px -1px 53px 19px rgba(251,37,118,0);
+      -moz-box-shadow: -1px -1px 53px 19px rgba(251,37,118,0);}
+      to {box-shadow: -1px -1px 53px 19px rgba(251,37,118,0.22);
+      -webkit-box-shadow: -1px -1px 53px 19px rgba(251,37,118,0.22);
+      -moz-box-shadow: -1px -1px 53px 19px rgba(251,37,118,0.22);}
+      }
+      `
