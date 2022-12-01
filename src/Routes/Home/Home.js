@@ -2,24 +2,27 @@ import {Navbar} from "../../component/Navbar/Navbar";
 import {Button} from "../../component/Button/Button";
 import {
     Background,
-    ButtonHolder, CategoryCardsContainer,
-    CategoryContainer, CategoryContainerTitle, CategorySection, Dark, Glow, Glow2, HomeSlider2Container,
-    HomeSliderContainer,
+    ButtonHolder,
+    CategoryContainer,
+    CategoryContainerTitle,
+    CategorySection,
+    Glow,
+    Glow2,
+    HomeSlider2Container,
     Intro,
-    Line,
-    SnapContainer,
-    Trending, TrendingDay, TrendingElements, TrendingWeek, UpcomingMovies
+    Trending,
+    TrendingElements,
+    TrendingWeek,
+    UpcomingMovies
 } from "./Home.styles";
 import{HomeSlider} from "../../component/Slider/HomeSlider";
-import {motion} from "framer-motion";
 import {CategoryCardComponent} from "../../component/Category card home/CategoryCard.component";
 import {HomeSlider2} from "../../component/Slider/HomeSlider2";
-import {useContext, useState} from "react";
-import {PageContext, PageProvider} from "../../context/Category.context";
+import {useContext} from "react";
+import {PageContext} from "../../context/Category.context";
 import {HomeSliderTopRated} from "../../component/Slider/HomeSliderTopRated";
 import {HomeSliderPopular} from "../../component/Slider/HomeSliderPopular";
 import {HomeVideoSlider} from "../../component/Slider/HomeVideoSlider/HomeVideoSlider";
-import {MainVideoCarouselContainer} from "../Main Viceo Route/MainVideo.styles";
 import {HomeVideoCarouselContainer} from "../../component/Slider/HomeVideoSlider/HomeVideoSlider.styles";
 import {FadingBackground} from "../../component/Movie card/MovieCard";
 import {ModalProvider} from "styled-react-modal";

@@ -9,7 +9,7 @@ import {
     StyledModal
 } from "./MovieCard.styles";
 import {Skeleton} from "@mui/material";
-import {useContext, useState} from "react";
+import {useState} from "react";
 import styled from "styled-components"
 import {BaseModalBackground} from "styled-react-modal";
 import {buildStyles, CircularProgressbar} from 'react-circular-progressbar';
@@ -17,12 +17,9 @@ import 'react-circular-progressbar/dist/styles.css';
 import {Button} from "../Button/Button";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import {Link, useLocation, useNavigate, useParams} from "react-router-dom";
+import {useLocation, useNavigate, useParams} from "react-router-dom";
 import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import ReactPlayer from "react-player/lazy";
-import axios from "axios";
-import {PageContext} from "../../context/Category.context";
 
 
 
@@ -74,10 +71,11 @@ export const MovieCard =(
     }
     function navigateToVideo(){
         params.movieName = parameter
-        console.log(params.movieName)
-        navigate(`${location.pathname}/${parameter}/watch`,{replace:false, state:{
+        console.log("this is param",params.movieName)
+        navigate(`${location.pathname}/${parameter}/watch`,{state:{
                 movieId
             }})
+        console.log(`${location.pathname}`)
     }
     function afterOpen() {
         setTimeout(() => {

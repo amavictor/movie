@@ -5,23 +5,21 @@ import {
     MainContainer, MainVideoCarouselCard,
     MainVideoCarouselContainer, MovieDetails, MovieVideo, MovieVideos, ProductionCompany, RatingContainerMain,
     RatingMain,
-    VideoBody, VideoBodyHolder, VideoSneak
+    VideoBody, VideoBodyHolder
 } from "./MainVideo.styles";
-import {Link, useLocation, useNavigate, useParams} from "react-router-dom";
+import {useLocation, useNavigate, useParams} from "react-router-dom";
 import {useContext, useEffect, useLayoutEffect, useState} from "react";
 import axios from "axios";
-import {BASE_URL, IMG_BASE_URL, TRENDING_MOVIES_BY_DAY_URL, TRENDING_MOVIES_BY_WEEK_URL} from "../../utils";
+import {BASE_URL, IMG_BASE_URL} from "../../utils";
 import {toast, ToastContainer} from "react-toastify";
 import {PageContext} from "../../context/Category.context";
 import {ratingChecker} from "../../component/Movie card/MovieCard";
 import {buildStyles, CircularProgressbar} from "react-circular-progressbar";
-import TheaterComedyIcon from '@mui/icons-material/TheaterComedy';
 import ClearIcon from '@mui/icons-material/Clear';
 import {ModalProvider} from "styled-react-modal";
 import ReactPlayer from "react-player/lazy";
 import {RotateIcon} from "../../component/Navbar/Navbar.styles";
-import {StyledModal, Trailer} from "../../component/Movie card/MovieCard.styles";
-import {Skeleton} from "@mui/material";
+import {Trailer} from "../../component/Movie card/MovieCard.styles";
 import {Loader} from "../../component/Loader/Loader";
 
 export const MainVideo =()=>{
@@ -37,7 +35,6 @@ export const MainVideo =()=>{
     const params = useParams()
     const navigate = useNavigate()
     const IncreaseRecommendation =()=>{
-
         axios.get(`${BASE_URL}movie/${location.state.movieId}/recommendations?api_key=672e218cbb77d06c47ae1e2d04209fb4&language=en-US&page=${pageNumber}`)
             .then(response=>{
                 const newMovies = response.data.results
@@ -51,8 +48,10 @@ export const MainVideo =()=>{
         console.log(pageNumber)
     }
 
+
     useLayoutEffect(()=>{
         setNoNav(true)
+        console.log("I am main video")
     },[])
 
     useEffect(()=>{

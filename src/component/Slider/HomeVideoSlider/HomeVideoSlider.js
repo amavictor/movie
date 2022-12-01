@@ -1,15 +1,12 @@
 import "./HomeVideoSlider.styles"
-import {ImageDown, MovieBody, VideoApp, VideoPlayer} from "./HomeVideoSlider.styles";
-import Avat from "../../../assests/images/avatar.jpg"
+import {ImageDown, MovieBody} from "./HomeVideoSlider.styles";
 import Play from "../../../assests/images/play-button.png"
 import {useSelector} from "react-redux";
 import {selectPopularMovies, selectUpcomingMovies} from "../../../store/Movies/Movies.selector";
-import {useCallback, useEffect, useLayoutEffect, useState} from "react";
+import {useState} from "react";
 import axios from "axios";
 import {BASE_URL, IMG_BASE_URL} from "../../../utils";
-import ReactPlayer from "react-player/lazy";
 import {Loader} from "../../Loader/Loader";
-import {StyledModal} from "../../Movie card/MovieCard.styles";
 import {StyledModalHome} from "../../../Routes/Home/Home.styles";
 export const HomeVideoSlider=({popular})=>{
     const latestMovies = useSelector(selectUpcomingMovies)

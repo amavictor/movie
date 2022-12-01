@@ -6,7 +6,7 @@ import {FadingBackground, MovieCard} from "../../component/Movie card/MovieCard"
 import {BASE_URL, IMG_BASE_URL} from "../../utils";
 import {NowPlayingContainer, PageButton, PaginationContainer} from "./nowPlaying.styles";
 import axios from "axios";
-import Modal, {BaseModalBackground, ModalProvider} from "styled-react-modal";
+import {ModalProvider} from "styled-react-modal";
 import {PageContext} from "../../context/Category.context";
 
 

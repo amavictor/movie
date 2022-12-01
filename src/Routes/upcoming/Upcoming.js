@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from "react-redux";
-import {selectNowPlayingMovies, selectUpcomingMovies} from "../../store/Movies/Movies.selector";
+import {selectUpcomingMovies} from "../../store/Movies/Movies.selector";
 import {useContext, useEffect, useState} from "react";
 import {PageContext} from "../../context/Category.context";
 import axios from "axios";
