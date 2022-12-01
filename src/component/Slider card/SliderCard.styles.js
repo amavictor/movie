@@ -62,7 +62,11 @@ export const SliderCards = styled.div`
     align-items: center;
     justify-content: space-between;
   }
-    
+  @media (max-width: 768px){
+    p{
+      font-size: 13px;
+    }
+  }
 `
 export const HomeCircular =styled.div`
   width: 40px;

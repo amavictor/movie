@@ -3,10 +3,19 @@ import {Link} from "react-router-dom"
 
 export const Navigation = styled.nav
 `
+  height: 10vh;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  background: rgba( 255, 255, 255, 0.2 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 8px );
+  -webkit-backdrop-filter: blur( 3px );
+  img{
+    width: 128px;
+    height: 40px;
+  }
   
   h1{
     font-size: 1.4rem;

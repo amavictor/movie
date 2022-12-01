@@ -26,6 +26,12 @@ export const HomeSlider2=()=> {
                     pauseOnMouseEnter:true
                 }}
                 modules={[Autoplay]}
+                /*breakpoints={{
+                    768: {
+                        slidesPerView: 2,
+                        spaceBetween:0,
+                    },
+                }}*/
 
             >
                 {

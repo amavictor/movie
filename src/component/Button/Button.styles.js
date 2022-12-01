@@ -14,6 +14,10 @@ export const Buttons = styled.button`
   overflow: hidden;
   z-index: 1;
   border-radius: 3px;
+  @media (max-width: 768px){
+    font-size: 1.2rem;
+    padding: 5px 10px;
+  }
 
   &::before{
     content: "";
@@ -40,6 +44,7 @@ export const Buttons = styled.button`
     props=> props.type==="primary" && css`
      color: white;
       background-color: var(--red);
+      
     `
   }
 

@@ -116,3 +116,9 @@ a{
   transition: all .3s;
   border-radius: 27px;
 }
+@media (max-width: 768px) {
+  .day{
+    width:100px;
+  }
+
+}

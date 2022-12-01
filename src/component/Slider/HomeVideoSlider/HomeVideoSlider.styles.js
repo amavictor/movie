@@ -21,6 +21,9 @@ export const ImageDown =styled.div`
     left: 20px;
     opacity: 1;
   }
+  p{
+    transition: all .3s ease;
+  }
 `
 export const VideoApp = styled.div`
   position: absolute;
@@ -65,6 +68,9 @@ export const MovieBody =styled.div`
         top: 50%;
         left: 50%;
         transform: translate(-50%,-50%);
+      }
+      p{
+        opacity: 0;
       }
     }
     ${VideoApp}{

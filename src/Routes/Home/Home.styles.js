@@ -84,6 +84,10 @@ export const Background = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+  @media (max-width: 768px){
+      height: fit-content;  
+      padding-bottom: 40px;
+  }
   
   .black{
     /*background:  linear-gradient(to top, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0,  0));*/
@@ -107,7 +111,7 @@ export const Line = styled.div`
 export const Intro = styled.div`
   margin-top: 150px;
   h5{
-    font-size: 1.5rem;
+    font-size: 2rem;
     position: relative;
     
     &::after{
@@ -117,7 +121,7 @@ export const Intro = styled.div`
       display: block;
       height: 2px;
       background: var(--offWhite);
-      width: 400px;
+      width: clamp(200px, 50vw, 400px);
     }
   }
   div{
@@ -130,6 +134,17 @@ export const Intro = styled.div`
       line-height: 2;
     }
   }
+  @media (max-width: 768px) {
+      h5{
+            font-size: 1.5rem;
+      }
+        div{
+              h2{
+                    font-size: 2.5rem;
+              }
+        }
+     
+  }    
 `
 export const ButtonHolder = styled.div`
   display: flex;
@@ -150,7 +165,7 @@ export const Glow = styled.div`
   /* 01 */
 
   position: absolute;
-  width: 1086px;
+  width: 100%;
   height: 1085px;
   opacity: 0.4;
   z-index: -20;
@@ -171,7 +186,7 @@ export const Glow2 = styled.div`
   /* 3 */
 
   position: absolute;
-  width: 1124px;
+  width: 100%;
   height: 1124px;
   opacity: 0.4;
 
@@ -204,7 +219,7 @@ export const CategoryContainer = styled.div`
 export const CategoryContainerTitle = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   flex-wrap: wrap;
   gap: 10%;
   width: 100%;
@@ -217,6 +232,15 @@ export const CategoryContainerTitle = styled.div`
     max-width: 30%;
     font-size: 1.2rem;
   }
+      @media(max-width: 768px){
+            h3{
+                  font-size: 2rem;
+            }
+            p{
+                  font-size: 0.8rem;
+                  line-height: 1.2;
+            }
+      }
 `
 
 export const TrendingElements = styled.div`
@@ -230,10 +254,9 @@ export const TrendingWeek = styled.div`
     flex-wrap: wrap;
     align-items: center;
     padding: 0% 10%;
-  h3{
-    font-size: 2.5rem;
-  }
-  
+     h3{
+      font-size: 2.5rem;
+    }
     div{
       margin-left: 138px;
       display: flex;
@@ -245,10 +268,23 @@ export const TrendingWeek = styled.div`
         margin-right: 50px;
         &:hover{
           cursor: pointer;
-          
         }
       }
     }
+@media (max-width: 768px){
+      h3{
+            font-size: 1.5rem ;
+      }
+      div{
+            width: 100%;
+          margin-left: 0px;
+            h4{
+                  font-size: 18px;
+                  margin-right: 20px;
+            }
+      }
+}
+
 `
 export const HomeSlider2Container =styled.div`
   width: 100%;

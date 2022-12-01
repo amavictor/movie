@@ -23,55 +23,103 @@ import {MainVideoCarouselContainer} from "../Main Viceo Route/MainVideo.styles";
 import {HomeVideoCarouselContainer} from "../../component/Slider/HomeVideoSlider/HomeVideoSlider.styles";
 import {FadingBackground} from "../../component/Movie card/MovieCard";
 import {ModalProvider} from "styled-react-modal";
-import {HomeVideoSlider2} from "../../component/Slider/HomeVideoSlider2/HomeVideoSlider2";
-
+import {Footer} from "../../component/footer/footer";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 export const Home = () => {
     const {moviesDay, setMoviesDay} = useContext(PageContext)
-
+    AOS.init()
     return(
       <>
           <ModalProvider backgroundComponent={FadingBackground}>
-
               <header>
                   <Background>
                       <Navbar/>
                       <Intro className={"padding"}>
-                          <h5>Welcome</h5>
+                          <h5
+                              data-aos="fade-up"
+                              data-aos-anchor-placement="center-center"
+                              data-aos-duration={"500"}
+                              data-aos-easing="ease-in-out"
+                              data-aos-once="true"
+
+                          >Welcome</h5>
                           <div>
-                              <h2>Enjoy non-stop entertainment</h2>
-                              <p>Forget the cinemas, we've got you covered. <br/> Enjoy the cinema experience your laptop,
+                              <h2
+                                  data-aos="fade-up"
+                                  data-aos-anchor-placement="center-center"
+                                  data-aos-duration={"500"}
+                                  data-aos-easing="ease-in-out"
+                                  data-aos-once="true"
+
+                              >Enjoy non-stop entertainment</h2>
+                              <p
+
+                                  data-aos="fade-up"
+                                  data-aos-anchor-placement="center-center"
+                                  data-aos-duration={"500"}
+                                  data-aos-easing="ease-in-out"
+                                  data-aos-once="true"
+
+                              >Forget the cinemas, we've got you covered. <br/> Enjoy the cinema experience your laptop,
                                   and mobile screens.</p>
-                              <ButtonHolder>
+                              <ButtonHolder
+                                  data-aos="fade-up"
+                                  data-aos-anchor-placement="center-center"
+                                  data-aos-duration={"500"}
+                                  data-aos-easing="ease-in-out"
+                                  data-aos-once="true"
+
+                              >
                                   <Button secondary>Show plan</Button>
                                   <Button type={"primary"}>Get started</Button>
                               </ButtonHolder>
                           </div>
                       </Intro>
                       <div className={"black"}/>
-
-
                   </Background>
               </header>
               <Trending >
                   <Glow/>
-                  <TrendingWeek>
+                  <TrendingWeek
+                      data-aos="fade-down"
+                      data-aos-anchor-placement="center-center"
+                      data-aos-duration={"500"}
+                      data-aos-easing="ease-in-out"
+                  >
                       <h3>Trending Movies</h3>
                       <div>
                           <h4 onClick={()=>setMoviesDay(true)} className={moviesDay && "day"}>Today</h4>
                           <h4 onClick={()=>setMoviesDay(false)} className={moviesDay ? null : "day"}>This week</h4>
                       </div>
                   </TrendingWeek>
-                  <TrendingElements>
+                  <TrendingElements
+                      data-aos="fade-up"
+                      data-aos-anchor-placement="center-center"
+                      data-aos-duration={"500"}
+                      data-aos-easing="ease-in-out"
+                      data-aos-once="true"
+                  >
                       <HomeSlider2Container>
                           <HomeSlider2/>
                       </HomeSlider2Container>
                   </TrendingElements>
               </Trending>
               <UpcomingMovies >
-                  <TrendingWeek>
+                  <TrendingWeek
+                      data-aos="fade-up"
+                      data-aos-anchor-placement="center-center"
+                      data-aos-duration={"500"}
+                      data-aos-easing="ease-in-out"
+                  >
                       <h3>Upcoming Movies</h3>
                   </TrendingWeek>
-                  <TrendingElements>
+                  <TrendingElements
+                      data-aos="fade-up"
+                      data-aos-anchor-placement="center-center"
+                      data-aos-duration={"500"}
+                      data-aos-easing="ease-in-out"
+                  >
                       <HomeSlider2Container>
                           <HomeSlider/>
                       </HomeSlider2Container>
@@ -80,7 +128,12 @@ export const Home = () => {
               </UpcomingMovies>
               <UpcomingMovies >
                   <TrendingWeek>
-                      <h3>Top rated Movies</h3>
+                      <h3
+                          data-aos="fade-up"
+                          data-aos-anchor-placement="center-center"
+                          data-aos-duration={"700"}
+                          data-aos-easing="ease-in-out"
+                      >Top rated Movies</h3>
                   </TrendingWeek>
                   <TrendingElements>
                       <HomeSlider2Container>
@@ -90,10 +143,20 @@ export const Home = () => {
 
               </UpcomingMovies>
               <UpcomingMovies>
-                  <TrendingWeek>
+                  <TrendingWeek
+                      data-aos="fade-up"
+                      data-aos-anchor-placement="center-center"
+                      data-aos-duration={"500"}
+                      data-aos-easing="ease-in-out"
+                  >
                       <h3>Popular Movies</h3>
                   </TrendingWeek>
-                  <TrendingElements>
+                  <TrendingElements
+                      data-aos="fade-up"
+                      data-aos-anchor-placement="center-center"
+                      data-aos-duration={"500"}
+                      data-aos-easing="ease-in-out"
+                  >
                       <HomeSlider2Container>
                           <HomeSliderPopular/>
                       </HomeSlider2Container>
@@ -101,24 +164,49 @@ export const Home = () => {
 
               </UpcomingMovies>
               <UpcomingMovies>
-                  <TrendingWeek>
-                      <h3>Popular Trailers</h3>
+                  <TrendingWeek
+                      data-aos="fade-up"
+                      data-aos-anchor-placement="center-center"
+                      data-aos-duration={"500"}
+                      data-aos-easing="ease-in-out"
+                  >
+                      <h3>Latest Trailers</h3>
                   </TrendingWeek>
-                  <TrendingElements>
+                  <TrendingElements
+
+                      data-aos="fade-up"
+                      data-aos-anchor-placement="center-center"
+                      data-aos-duration={"500"}
+                      data-aos-easing="ease-in-out"
+                  >
 
                       <HomeVideoCarouselContainer>
                           <HomeVideoSlider/>
                       </HomeVideoCarouselContainer>
                   </TrendingElements>
+                  <Glow/>
               </UpcomingMovies>
 
               <UpcomingMovies>
-                  <TrendingWeek>
+                  <TrendingWeek
+                      data-aos="fade-up"
+                      data-aos-anchor-placement="center-center"
+                      data-aos-duration={"500"}
+                      data-aos-easing="ease-in-out"
+                  >
                       <h3>Popular movie clips</h3>
                   </TrendingWeek>
                   <TrendingElements>
-                      <HomeVideoCarouselContainer>
-                          <HomeVideoSlider2/>
+                      <HomeVideoCarouselContainer
+                          data-aos="fade-left"
+                          data-aos-anchor-placement="center-center"
+                          data-aos-duration={"500"}
+                          data-aos-easing="ease-in-out"
+                      >
+                          <HomeVideoSlider
+
+                              popular={true}
+                          />
                       </HomeVideoCarouselContainer>
                   </TrendingElements>
               </UpcomingMovies>
@@ -132,7 +220,7 @@ export const Home = () => {
                   </CategoryContainer>
                   <Glow2/>
               </CategorySection>
-
+              <Footer/>
           </ModalProvider>
 
 

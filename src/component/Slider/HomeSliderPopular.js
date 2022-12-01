@@ -17,7 +17,7 @@ export const HomeSliderPopular=()=>{
                 slidesPerView={6}
                 spaceBetween={180}
                 autoplay={{
-                    delay: 2000,
+                    delay: 5000,
                     disableOnInteraction: false,
                     pauseOnMouseEnter:true
                 }}

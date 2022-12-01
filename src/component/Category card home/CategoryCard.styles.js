@@ -32,6 +32,16 @@ export const CategoryCardBody= styled.div`
   *{
     margin: 0;
   }
+@media (max-width: 768px){
+  h5{
+    font-size: 1.2rem;
+  }
+  p{
+    font-size: .9rem;
+  }
+  width: 120px;
+  height: 80px;
+}
 `
 export const CategoryCardsContainer = styled.div`
   display: flex;
