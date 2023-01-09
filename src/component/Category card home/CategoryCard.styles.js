@@ -46,7 +46,7 @@ export const CategoryCardBody= styled.div`
 export const CategoryCardsContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-around;
   flex-wrap: wrap;
   width: 100%;
   row-gap: 40px;

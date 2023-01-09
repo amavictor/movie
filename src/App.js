@@ -10,11 +10,11 @@ import {Upcoming} from "./Routes/upcoming/Upcoming";
 import {MovieRoute} from "./Routes/Movie tab/Movie";
 import {MainVideo} from "./Routes/Main Viceo Route/MainVideo";
 import {
-    fetchLatestAsync,
     fetchPopularAsync,
     fetchTopRatedAsync,
     fetchUpcomingAsync
 } from "./store/Movies/Movies.action";
+import {Auth} from "./Routes/authentication/auth";
 
 
 function App() {
@@ -31,19 +31,12 @@ function App() {
           <Route path={"/"} element={<Home/>}/>
           <Route path={"/all-movies"} element={<MovieRoute/>}>
               <Route index element={<NowPlaying/>}/>
-              <Route path={":movieName/watch"} element={<MainVideo/>}/>
-              <Route path={"popular"} element={<Popular/>}>
-                  <Route path={":movieName/watch"} element={<MainVideo/>}/>
-              </Route>
-              <Route path={"top-rated"} element={<TopRated/>}>
-                  <Route path={":movieName/watch"} element={<MainVideo/>}/>
-              </Route>
-              <Route path={"upcoming"} element={<Upcoming/>}>
-                  <Route path={":movieName/watch"} element={<MainVideo/>}/>
-              </Route>
+              <Route path={":movieName/watch"} element={<MainVideo/> }/>
+              <Route path={"popular"} element={<Popular/>}/>
+              <Route path={"top-rated"} element={<TopRated/>}/>
+              <Route path={"upcoming"} element={<Upcoming/>}/>
           </Route>
-
-          <Route path={"/video"} element={<MainVideo/>}/>
+          <Route path={"/auth"} element={<Auth/>}/>
       </Routes>
   );
 }

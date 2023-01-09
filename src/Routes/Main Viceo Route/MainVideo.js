@@ -7,7 +7,7 @@ import {
     RatingMain,
     VideoBody, VideoBodyHolder
 } from "./MainVideo.styles";
-import {useLocation, useNavigate, useParams} from "react-router-dom";
+import {ScrollRestoration, useLocation, useNavigate, useParams} from "react-router-dom";
 import {useContext, useEffect, useLayoutEffect, useState} from "react";
 import axios from "axios";
 import {BASE_URL, IMG_BASE_URL} from "../../utils";
@@ -198,7 +198,6 @@ export const MainVideo =()=>{
                     <ToastContainer/>
                 </VideoBody>
             </VideoBodyHolder>
-
         </ModalProvider>
     )
 }

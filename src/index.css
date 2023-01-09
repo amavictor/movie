@@ -37,7 +37,7 @@ code {
     monospace;
 }
 
-h1,h2,h3,h4,h5,h6,p,li,em{
+h1,h2,h3,h4,h5,h6,p,li,em,input{
   font-family: 'Poppins', sans-serif;
   line-height: 1;
 

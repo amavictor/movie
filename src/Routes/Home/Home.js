@@ -29,6 +29,9 @@ import {ModalProvider} from "styled-react-modal";
 import {Footer} from "../../component/footer/footer";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+
+
+
 export const Home = () => {
     const {moviesDay, setMoviesDay} = useContext(PageContext)
     AOS.init()
@@ -39,41 +42,12 @@ export const Home = () => {
                   <Background>
                       <Navbar/>
                       <Intro className={"padding"}>
-                          <h5
-                              data-aos="fade-up"
-                              data-aos-anchor-placement="center-center"
-                              data-aos-duration={"500"}
-                              data-aos-easing="ease-in-out"
-                              data-aos-once="true"
-
-                          >Welcome</h5>
+                          <h5>Welcome</h5>
                           <div>
-                              <h2
-                                  data-aos="fade-up"
-                                  data-aos-anchor-placement="center-center"
-                                  data-aos-duration={"500"}
-                                  data-aos-easing="ease-in-out"
-                                  data-aos-once="true"
-
-                              >Enjoy non-stop entertainment</h2>
-                              <p
-
-                                  data-aos="fade-up"
-                                  data-aos-anchor-placement="center-center"
-                                  data-aos-duration={"500"}
-                                  data-aos-easing="ease-in-out"
-                                  data-aos-once="true"
-
-                              >Forget the cinemas, we've got you covered. <br/> Enjoy the cinema experience your laptop,
+                              <h2>Enjoy non-stop entertainment</h2>
+                              <p>Forget the cinemas, we've got you covered. <br/> Enjoy the cinema experience your laptop,
                                   and mobile screens.</p>
-                              <ButtonHolder
-                                  data-aos="fade-up"
-                                  data-aos-anchor-placement="center-center"
-                                  data-aos-duration={"500"}
-                                  data-aos-easing="ease-in-out"
-                                  data-aos-once="true"
-
-                              >
+                              <ButtonHolder>
                                   <Button secondary>Show plan</Button>
                                   <Button type={"primary"}>Get started</Button>
                               </ButtonHolder>
@@ -207,7 +181,6 @@ export const Home = () => {
                           data-aos-easing="ease-in-out"
                       >
                           <HomeVideoSlider
-
                               popular={true}
                           />
                       </HomeVideoCarouselContainer>

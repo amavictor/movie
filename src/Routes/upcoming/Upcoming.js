@@ -4,10 +4,11 @@ import {useContext, useEffect, useState} from "react";
 import {PageContext} from "../../context/Category.context";
 import axios from "axios";
 import {BASE_URL, IMG_BASE_URL} from "../../utils";
-import {fetchNowPlaying} from "../../store/Movies/Movies.action";
+import {fetchUpComing} from "../../store/Movies/Movies.action";
 import {ModalProvider} from "styled-react-modal";
 import {FadingBackground, MovieCard} from "../../component/Movie card/MovieCard";
 import {NowPlayingContainer, PageButton, PaginationContainer} from "../No playing/nowPlaying.styles";
+
 
 export const Upcoming =()=>{
     const upComing = useSelector(selectUpcomingMovies)
@@ -17,8 +18,8 @@ export const Upcoming =()=>{
     useEffect(()=>{
         setNoNav(false)
         /*dispatch(fetchNowPlayingAsync())*/
-        axios.get(`${BASE_URL}movie/now_playing?api_key=672e218cbb77d06c47ae1e2d04209fb4&language=en-US&page=${pageNumber}`)
-            .then((response)=> dispatch(fetchNowPlaying(response.data.results)))
+        axios.get(`${BASE_URL}movie/upcoming?api_key=672e218cbb77d06c47ae1e2d04209fb4&language=en-US&page=${pageNumber}`)
+            .then((response)=> dispatch(fetchUpComing(response.data.results)))
             .catch(e=>window.alert(e))
     },[pageNumber])
     const nextPage =()=>{

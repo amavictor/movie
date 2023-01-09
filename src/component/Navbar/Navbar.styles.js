@@ -5,6 +5,8 @@ export const Navigation = styled.nav
   height: 10vh;
   display: flex;
   flex-wrap: wrap;
+  position:relative;
+  z-index:5;
   align-items: center;
   justify-content: space-between;
   background: rgba( 255, 255, 255, 0.2 );
@@ -14,6 +16,9 @@ export const Navigation = styled.nav
   img{
     width: 128px;
     height: 40px;
+    &:hover{
+      cursor:pointer;
+    }
   }
   
   h1{

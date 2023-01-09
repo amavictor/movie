@@ -4,23 +4,17 @@ import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import MenuIcon from '@mui/icons-material/Menu';
 import {Icons, Navigation} from "./Navbar.styles";
 import Logo from "../../assests/images/Logo.png"
+import {useLocation, useNavigate} from "react-router-dom";
 
 export const Navbar =()=>{
+    const navigate = useNavigate()
+    const location = useLocation()
     return(
         <Navigation className={"padding"}>
-            <img src={Logo}/>
+            <img alt={"logo"} src={Logo} onClick={()=>navigate(location.state?.path || "/")}/>
             <div className={"hamburger"}>
                 <MenuIcon/>
             </div>
-{/*
-            <ul>
-                <li><NavLink to={"/"}>Home</NavLink></li>
-                <li><NavLink to={"/"}>Movies</NavLink></li>
-                <li><NavLink to={"/"}>Categories</NavLink></li>
-                <li><NavLink to={"/"}>Pricing</NavLink></li>
-                <li><NavLink to={"/"}>About</NavLink></li>
-            </ul>*/}
-
             <Icons>
                 <div>
                     <NotificationsNoneIcon/>
