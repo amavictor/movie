@@ -6,12 +6,14 @@ export const LoginContainer =styled.main`
   flex-direction: column;
   width: 80%;
   height: 90%;
+  
   gap: 25%;
   img{
     width: 100px;
     height: 40px;
     margin: 0 auto;
   }
+ 
 `
 
 export const LoginForm =styled.form`

@@ -2,6 +2,7 @@ import {Login} from "../../component/signIn-signUp/Login";
 import {LoginBackground, LoginContainer, LoginGlow, LoginGlow2, LoginSignUPContainer} from "./auth.styles";
 import {useState} from "react";
 import {SignUp} from "../../component/signIn-signUp/signUp";
+import {Button} from "../../component/Button/Button";
 
 export const Auth = () => {
     const [signUp, setSignUp] = useState(false)
@@ -11,6 +12,7 @@ export const Auth = () => {
                 <LoginGlow2/>
                 <LoginGlow/>
                 <LoginSignUPContainer>
+
                     {
                         !signUp ?
                             <>
@@ -24,6 +26,7 @@ export const Auth = () => {
                             </>
 
                     }
+
                 </LoginSignUPContainer>
             </LoginBackground>
         </>

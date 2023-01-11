@@ -6,25 +6,47 @@ import {LoginContainer, LoginForm} from "./login.styles";
 import Logo from "../../assests/images/Logo.png";
 import {Button} from "../Button/Button";
 import {motion} from "framer-motion"
+import {signUpWithEmailAndPassword} from "../../store/user/user.action";
+import {emailAndPasswordSignUp} from "../../utils";
+
 
 export const SignUp = ()=> {
-    const {register, handleSubmit,reset, formState: {errors}} = useForm({})
+    const {register, handleSubmit,reset,formState: {errors}} = useForm({
+        defaultValues:{
+            email:"",
+            username:"",
+            password:"",
+            confirmPassword:""
+        }
+    })
     const [loading,setLoading] = useState(null)
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const location = useLocation()
-    const signUp =(data)=>{
-        console.log(errors)
+    const redirect =()=> navigate(location.state?.path || "/", {replace:true})
+    const signUp =async (data)=>{
+        const {email,password,username,confirmPassword}=data
+        if(password!==confirmPassword){
+            alert("Password doesn't match")
+        }
+        else{
+            setLoading(true)
+            dispatch(signUpWithEmailAndPassword(await emailAndPasswordSignUp(email,password,username,data)))
+            reset()
+            setLoading(false)
+            redirect()
+        }
     }
     return (
         <LoginContainer>
             <img src={Logo} alt={"logo"}/>
+
             <LoginForm onSubmit={handleSubmit(signUp)}>
                 <label
                     htmlFor={"email"}
                 >
                     <input
-
+                        type={"email"}
                         placeholder={"Email"}
                         {
                             ...register("email",{
@@ -125,8 +147,7 @@ export const SignUp = ()=> {
                         >Password is required</motion.p>
                     )}
                 </label>
-
-                <Button>Sign In</Button>
+                <Button disabled={loading}>{loading ? "Loading" : "Sign Up"}</Button>
             </LoginForm>
         </LoginContainer>
     )

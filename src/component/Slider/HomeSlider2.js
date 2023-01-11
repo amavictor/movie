@@ -1,11 +1,9 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-
 import { Autoplay } from "swiper";
 import {useSelector} from "react-redux";
 import {selectTrendingMovies, selectTrendingMoviesDay} from "../../store/Trending Movies/TrendingMovies.selector";
-import {Slide} from "@mui/material";
 import {SliderCard} from "../Slider card/SliderCard";
 import {IMG_BASE_URL} from "../../utils";
 import {useContext} from "react";

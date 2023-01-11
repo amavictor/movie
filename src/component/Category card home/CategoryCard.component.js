@@ -98,13 +98,11 @@ export const CategoryCardComponent =()=>{
     return(
         <>
             <CategoryCardsContainer>
-
-
                 {
-                    categories.map((cat)=>{
+                    categories.map((cat,index)=>{
                         return(
                             <>
-                                <CategoryCardBody onClick={cat.link} key={cat.link}>
+                                <CategoryCardBody onClick={()=>cat.link} key={index}>
                                     <h5>{cat.categoryName}</h5>
                                     {cat.total &&  <p>{`${cat.total} +`}</p> }
                                 </CategoryCardBody>

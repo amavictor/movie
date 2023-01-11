@@ -24,6 +24,7 @@ function App() {
         dispatch(fetchUpcomingAsync())
         dispatch(fetchTopRatedAsync())
         dispatch(fetchPopularAsync())
+        
 
     },[])
   return (

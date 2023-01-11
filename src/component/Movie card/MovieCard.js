@@ -126,7 +126,7 @@ export const MovieCard =(
 
             <MovieCardContainer onClick={toggleModal}>
                 {
-                    image ? <img src={image}/> :
+                    image ? <img alt={"image"} src={image}/> :
                         <Skeleton variant={"rounded"} sx={{bgcolor: "#838383FF"}}>
                             <img/>
                         </Skeleton>

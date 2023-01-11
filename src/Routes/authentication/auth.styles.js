@@ -40,5 +40,13 @@ export const LoginSignUPContainer=styled.section`
       cursor: pointer;
     }
   }
+  button{
+    font-size: 1rem;
+    img{
+      width: 18px;
+      height: 18px;
+      margin-left: 20px;
+    }
+  }
   
 `

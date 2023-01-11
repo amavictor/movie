@@ -3,16 +3,22 @@ import {
     getAuth,
     createUserWithEmailAndPassword,
     GoogleAuthProvider,
-    signInWithPopup
+    signInWithPopup,
+    signInWithEmailAndPassword,
+    signOut
 } from "firebase/auth"
 import {
     getFirestore,
     doc,
     setDoc,
     serverTimestamp,
-    getDoc
+    getDoc,
+    getDocs,
+    collection,
+    query,
+    where,
+
 } from "firebase/firestore"
-import {checkNode} from "@testing-library/jest-dom/dist/utils";
 
 //Base url
 export const BASE_URL = "https://api.themoviedb.org/3/"
@@ -43,42 +49,49 @@ googleProvider.setCustomParameters({
     prompt: "select_account"
 })
 
-export const emailAndPasswordSignUp = async (email, password, db, data) => {
+export const emailAndPasswordSignUp = async (email, password,username,data) => {
     let currentUser = null
-
     try {
-        const newUser = await createUserWithEmailAndPassword(auth, email, password)
-        currentUser = newUser.user
-        const userDocRef = doc(firebaseDb,"users",currentUser?.uid)
-        let snapShot= await getDoc(userDocRef)
-        if(!snapShot){
-            //auth.currentUser is the same thing
-            await setDoc(doc(db, 'users', currentUser?.uid),
-                {
-                    uid: currentUser.uid,
-                    ...data,
-                    createdAt: serverTimestamp()
-                })
-        }
-        return currentUser
+        let existingUser = null
+        const userCollection = collection(firebaseDb,"users")
+        const userQuery = query(userCollection,where("username", "==", username))
+        let sameUser = await getDocs(userQuery)
+        sameUser.forEach((user)=>{
+            existingUser = user?.id
+        })
+            if(existingUser === null ){
+                const newUser = await createUserWithEmailAndPassword(auth, email, password)
+                currentUser = newUser.user
+                const userDocRef = doc(firebaseDb,"users",currentUser.uid)
+                const userSnapshot = await getDoc(userDocRef)
+                if(!userSnapshot.exists()) {
+                    await setDoc(doc(firebaseDb, "users", currentUser?.uid),
+                        {
+                            uid: currentUser.uid,
+                            ...data,
+                            createdAt: serverTimestamp()
+                        })
+                    existingUser = null
+                }
+
+            }
+            else{
+                alert("User with username already exists")
+            }
+
     } catch (e) {
         alert(e.message)
     }
     return currentUser?.uid
-
 }
-export const googleSignIn =async ()=> {
-    const {user} = await signInWithPopup(auth,googleProvider)
-    console.log(user)
-    // const userDocRef = doc(firebaseDb,"users",user?.uid)
-    // let snapShot= await getDoc(userDocRef)
-    // if(!snapShot){
-    //     //auth.currentUser is the same thing
-    //     await setDoc(doc(firebaseDb, 'users', user?.uid),
-    //         {
-    //             uid: user.uid,
-    //             email: user.email,
-    //             createdAt: serverTimestamp()
-    //         })
-    // }
+export const logInWithEmailAndPassword = async(email,password)=>{
+    let user =null
+    try{
+         user = await signInWithEmailAndPassword(auth,email,password)
+        console.log("This is user", user.user.uid )
+    }
+    catch (e) {
+        console.log(e.message)
+    }
+
 }
