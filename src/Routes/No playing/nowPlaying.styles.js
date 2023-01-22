@@ -1,10 +1,13 @@
 import styled from "styled-components"
 
 export const NowPlayingContainer = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-  gap: 30px;
+    display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 16px;
+  @media(max-width: 768px){
+    grid-gap: 8px;
+    grid-template-columns: repeat(2, 1fr);
+  }
 `
 
 export const PageButton = styled.div`

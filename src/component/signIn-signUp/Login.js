@@ -1,15 +1,14 @@
 import {Button} from "../Button/Button";
 import {useForm} from "react-hook-form";
-import {LoginContainer, LoginForm, LoginImage} from "./login.styles";
+import {LoginContainer, LoginForm} from "./login.styles";
 import Logo from "../../assests/images/Logo.png"
-import {useRef, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import {useState} from "react";
+import {useDispatch} from "react-redux";
 import {motion} from "framer-motion"
 
 import {useLocation, useNavigate} from "react-router-dom";
-import {signInWithEmailAndPassword, signUpWithEmailAndPassword} from "../../store/user/user.action";
-import {emailAndPasswordSignUp, firebaseDb, logInWithEmailAndPassword} from "../../utils";
-import {selectUser} from "../../store/user/user.selector";
+import {signInWithEmailAndPassword} from "../../store/user/user.action";
+import {logInWithEmailAndPassword} from "../../utils";
 
 export const Login = () => {
     const [loading,setLoading] = useState(null)
@@ -21,14 +20,12 @@ export const Login = () => {
     })
 
     const login =async data=>{
-        const {email,password,username,confirmPassword}=data
-        console.log(data)
+        const {email,password}=data
         setLoading(true)
         dispatch(signInWithEmailAndPassword(await logInWithEmailAndPassword(email,password)))
         reset()
         setLoading(false)
         navigate(location.state?.path || "/", {replace:true})
-
     }
     return (
         <LoginContainer>

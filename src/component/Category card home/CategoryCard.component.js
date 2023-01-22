@@ -7,7 +7,7 @@ export const CategoryCardComponent =()=>{
     const categories = [
         {
             categoryName: "All movies",
-            link: ()=> navigate("/all-movies")
+            link: "/all-movies"
         },
         {
             categoryName: "Action",
@@ -95,20 +95,20 @@ export const CategoryCardComponent =()=>{
             link:"/action"
         },
     ]
-    return(
+    return (
         <>
             <CategoryCardsContainer>
                 {
-                    categories.map((cat,index)=>{
-                        return(
-                            <>
-                                <CategoryCardBody onClick={()=>cat.link} key={index}>
-                                    <h5>{cat.categoryName}</h5>
-                                    {cat.total &&  <p>{`${cat.total} +`}</p> }
-                                </CategoryCardBody>
-                            </>
-                        )
-                    })
+                    categories.map((cat, index) =>
+                        <>
+                            <CategoryCardBody onClick={() =>navigate(cat.link)} key={index}>
+                                <h5>{cat.categoryName}</h5>
+                                {cat.total && <p>{`${cat.total} +`}</p>}
+                            </CategoryCardBody>
+                        </>
+
+
+                    )
                 }
 
 

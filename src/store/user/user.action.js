@@ -19,7 +19,7 @@ export const signOut=()=>{
     }
 }
 
-export const signInWithGoogle=(user)=>{
+export const setAuthUser=(user)=>{
     return{
         type:USER_ACTION_TYPE.SIGNIN_WITH_GOOGLE,
         payload:user

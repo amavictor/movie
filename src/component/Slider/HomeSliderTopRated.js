@@ -1,12 +1,11 @@
 import "swiper/css";
 import "swiper/css/effect-cards";
 import {Swiper,SwiperSlide} from "swiper/react";
-import {Autoplay, EffectCards} from "swiper";
+import {Autoplay} from "swiper";
 import {useSelector} from "react-redux";
-import {selectTrendingMovies} from "../../store/Trending Movies/TrendingMovies.selector";
 import {SliderCard} from "../Slider card/SliderCard";
 import {IMG_BASE_URL} from "../../utils";
-import {selectLatestMovies, selectTopRatedMovies, selectUpcomingMovies} from "../../store/Movies/Movies.selector";
+import {selectTopRatedMovies} from "../../store/Movies/Movies.selector";
 
 
 export const HomeSliderTopRated=()=>{
@@ -25,10 +24,9 @@ export const HomeSliderTopRated=()=>{
 
             >
                 {
-                    topRatedMovies?.map((movie)=>
-                        <SwiperSlide>
+                    topRatedMovies?.map((movie,index)=>
+                        <SwiperSlide key={index}>
                             <SliderCard
-                                key={movie.id}
                                 title={movie.title}
                                 image={`${IMG_BASE_URL + movie.poster_path}`}
                                 rating={movie.vote_average}

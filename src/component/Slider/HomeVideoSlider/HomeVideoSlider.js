@@ -71,8 +71,8 @@ export const HomeVideoSlider=({popular})=>{
             {
                 popular ?
 
-                    popularMovies.map((movie)=>
-                        <MovieBody>
+                    popularMovies.map((movie,index)=>
+                        <MovieBody key={index   }>
                             <ImageDown>
                                 <img alt={"backdrop"} src={`${IMG_BASE_URL + movie?.backdrop_path}`}/>
                                 <img alt={"backdrop"} src={Play}
@@ -108,8 +108,8 @@ export const HomeVideoSlider=({popular})=>{
                     )
 
                     :
-                latestMovies.map((movie)=>
-                    <MovieBody>
+                latestMovies.map((movie,index)=>
+                    <MovieBody key={index}>
                         <ImageDown>
                             <img alt={"backdrop"} src={`${IMG_BASE_URL + movie?.backdrop_path}`}/>
                             <img alt={"backdrop"} src={Play}

@@ -35,10 +35,9 @@ export const HomeSlider2=()=> {
                 {
                     moviesDay ?
 
-                    trendingMoviesDay.map((movie)=>
-                        <SwiperSlide>
+                    trendingMoviesDay.map((movie,index)=>
+                        <SwiperSlide key={index}>
                             <SliderCard
-                                key={movie.id}
                                 title={movie.title}
                                 image={`${IMG_BASE_URL + movie.poster_path}`}
                                 rating={movie.vote_average}
@@ -46,10 +45,10 @@ export const HomeSlider2=()=> {
                         </SwiperSlide>
                     )
                         :
-                        trendingMovies.map((movie)=>
+                        trendingMovies.map((movie,index)=>
                             <SwiperSlide>
                                 <SliderCard
-                                    key={movie.id}
+                                    key={index}
                                     title={movie.title}
                                     image={`${IMG_BASE_URL + movie.poster_path}`}
                                     rating={movie.vote_average}

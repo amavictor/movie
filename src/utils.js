@@ -3,9 +3,8 @@ import {
     getAuth,
     createUserWithEmailAndPassword,
     GoogleAuthProvider,
-    signInWithPopup,
     signInWithEmailAndPassword,
-    signOut
+    signOut,
 } from "firebase/auth"
 import {
     getFirestore,
@@ -88,10 +87,57 @@ export const logInWithEmailAndPassword = async(email,password)=>{
     let user =null
     try{
          user = await signInWithEmailAndPassword(auth,email,password)
-        console.log("This is user", user.user.uid )
     }
     catch (e) {
         console.log(e.message)
     }
 
+    return user?.user?.uid
+}
+
+//User image generator functions
+
+export const setRandomColor=()=>{
+    const letters = `0123456789ABCDEF`;
+    let color = `#`;
+
+    for(let i =0; i< 6; i++){
+        color+=letters[Math.floor(Math.random()*16)]
+    }
+    return color
+}
+
+const setInitials =(name)=>{
+    let initials
+    const splitName = name.split(" ")
+    const nameLength = splitName.length
+    if(nameLength>1){
+        initials = splitName[0].substring(0.1) + splitName[nameLength - 1].substring(0,1)
+    }
+    else if (nameLength ===1){
+        initials = splitName[0].substring(0.1)
+    }
+    else return null
+
+    return  initials.toUpperCase()
+}
+
+export const createIconFromName = (iconSize, name, color)=>{
+    if(name === null) return
+    let iconName = setInitials(name)
+    const canvas = document.createElement('canvas')
+    const context = canvas.getContext('2d')
+    canvas.width=canvas.height=iconSize
+    context.fillStyle="#ffffff"
+    context.fillRect(0,0,iconSize,iconSize)
+
+    context.fillStyle=`${color}50`
+    context.fillRect(0,0,iconSize,iconSize)
+
+    context.fillStyle=color;
+    context.textBaseline='middle'
+    context.textAlign='center'
+    context.font =`${iconSize/2}px Roboto`
+    context.fillText(iconName,(iconSize/2),(iconSize/2))
+    return canvas.toDataURL()
 }
