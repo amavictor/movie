@@ -2,7 +2,7 @@ import {Link, useNavigate} from "react-router-dom";
 import SportsKabaddiIcon from '@mui/icons-material/SportsKabaddi';
 import {CategoryCardBody, CategoryCardsContainer} from "./CategoryCard.styles";
 
-export const CategoryCardComponent =()=>{
+export const CategoryCardComponent = () => {
     const navigate = useNavigate()
     const categories = [
         {
@@ -12,87 +12,86 @@ export const CategoryCardComponent =()=>{
         {
             categoryName: "Action",
             total: 2000,
-            link:"/action",
-
+            link: "/action",
         },
         {
             categoryName: "Adventure",
             total: 1300,
-            link:"/action",
+            link: "/action",
         },
         {
-            categoryName: "Anime",
+            categoryName: "Animation",
             total: 1500,
-            link:"/action",
+            link: "/action",
         },
         {
             categoryName: "Comedy",
             total: 1000,
-            link:"/action",
+            link: "/action",
         },
         {
             categoryName: "Crime",
             total: 500,
-            link:"/action"
+            link: "/action"
         },
         {
             categoryName: "Documentary",
             total: 300,
-            link:"/action"
+            link: "/action"
         },
         {
             categoryName: "Drama",
             total: 700,
-            link:"/action"
+            link: "/action"
         },
         {
             categoryName: "Family",
             total: 200,
-            link:"/action"
+            link: "/action"
         },
         {
             categoryName: "History",
             total: 150,
-            link:"/action"
+            link: "/action"
         },
         {
             categoryName: "Horror",
             total: 500,
-            link:"/action"
+            link: "/action"
         },
         {
             categoryName: "Music",
-            total:200,
-            link:"/action"
-        },{
+            total: 200,
+            link: "/action"
+        }, {
             categoryName: "Mystery",
             total: 700,
-            link:"/action"
-        },{
+            link: "/action"
+        }, {
             categoryName: "Romance",
             total: 300,
-            link:"/action"
-        },{
+            link: "/action"
+        }, {
             categoryName: "Science Fiction",
             total: 400,
-            link:"/action"
-        },{
+            link: "/action"
+        }, {
             categoryName: "Tv movie",
             total: 3000,
-            link:"/action"
-        },{
+            link: "/action"
+        }, {
             categoryName: "Thriller",
             total: 3500,
-            link:"/action"
-        },{
+            link: "/action"
+        }, {
             categoryName: "War",
             total: 2000,
-            link:"/action"
+            link: "/action"
         },
         {
             categoryName: "Western",
             total: 300,
-            link:"/action"
+            link: "/action"
         },
     ]
     return (
@@ -101,13 +100,12 @@ export const CategoryCardComponent =()=>{
                 {
                     categories.map((cat, index) =>
                         <>
-                            <CategoryCardBody onClick={() =>navigate(cat.link)} key={index}>
+                            <CategoryCardBody onClick={() => navigate(cat.link, {state: {title: cat.categoryName}})}
+                                              key={index}>
                                 <h5>{cat.categoryName}</h5>
                                 {cat.total && <p>{`${cat.total} +`}</p>}
                             </CategoryCardBody>
                         </>
-
-
                     )
                 }
 

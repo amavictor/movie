@@ -1,12 +1,12 @@
 import {ALL_MOVIES_TYPES} from "./Movies.type";
 
+
 export const MOVIES_INITIAL_STATE ={
     nowPlaying:[],
     popular:[],
     topRated:[],
     upcomingMovies:[],
-    latest:[]
-
+    latest:[],
 }
 
 export const allMovieReducer =(state = MOVIES_INITIAL_STATE, action={})=>{

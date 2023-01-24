@@ -19,6 +19,7 @@ import {auth,} from "./utils";
 import {selectUser} from "./store/user/user.selector";
 import {onAuthStateChanged, setPersistence,browserLocalPersistence} from "firebase/auth";
 import {setAuthUser} from "./store/user/user.action";
+import {Genres} from "./Routes/Genres/Genres";
 
 
 function App() {
@@ -61,6 +62,7 @@ function App() {
               <Route path={"top-rated"} element={<TopRated/>}/>
               <Route path={"upcoming"} element={<Upcoming/>}/>
           </Route>
+          <Route path={"/action"} element={<Genres/>}/>
           <Route path={"/auth"} element={<Auth/>}/>
       </Routes>
   );

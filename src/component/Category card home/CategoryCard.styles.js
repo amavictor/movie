@@ -44,11 +44,13 @@ export const CategoryCardBody= styled.div`
 }
 `
 export const CategoryCardsContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-gap: 30px;
   width: 100%;
-  row-gap: 40px;
-  column-gap: 50px;
+  @media(max-width: 768px){
+    grid-gap: 8px;
+    grid-template-columns: repeat(2, 1fr);
+  }
 `
