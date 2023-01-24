@@ -32,11 +32,15 @@ export const Genres =({GType})=>{
         setNoNav(false)
         /*dispatch(fetchNowPlayingAsync())*/
 
-            let movies = (topRated.filter((item,index)=> item.genre_ids.includes(28)))
-            setGenres(movies)
-            console.log("This is that",genres)
+            // let topRatedFilter = (topRated.filter((item,index)=> item.genre_ids.includes(28)))
+            // let popularFilter = (popular.filter((item,index)=> item.genre_ids.includes(28)))
+            // let upcomingFilter = (upComing.filter((item,index)=> item.genre_ids.includes(28)))
+            // let latestFilter = (latest.filter((item,index)=> item.genre_ids.includes(28)))
+            // const actionGenre = [...topRatedFilter,...popularFilter,...upcomingFilter,...latestFilter]
+            // setGenres(actionGenre)
+            // console.log("This is that",actionGenre)
 
-    },[])
+    },[genres])
 
     const nextPage =()=>{
         setPageNumber(pageNumber+1)
@@ -70,11 +74,11 @@ export const Genres =({GType})=>{
                     }
                 </NowPlayingContainer>
 
-                <PaginationContainer>
-                    <PageButton onClick={prevPage}>-</PageButton>
-                    <p>{pageNumber}</p>
-                    <PageButton onClick={nextPage}>+</PageButton>
-                </PaginationContainer>
+                {/*<PaginationContainer>*/}
+                {/*    <PageButton onClick={prevPage}>-</PageButton>*/}
+                {/*    <p>{pageNumber}</p>*/}
+                {/*    <PageButton onClick={nextPage}>+</PageButton>*/}
+                {/*</PaginationContainer>*/}
 
             </div>
 

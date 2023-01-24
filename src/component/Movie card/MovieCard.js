@@ -40,6 +40,36 @@ export const ratingChecker=(rating)=>{
     }
 }
 
+
+export const toggleLike =(like,setLike)=>{
+
+    like ? toast.error("Removed from like",{
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            closeButton: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            type:"error",
+            position: toast.POSITION.TOP_RIGHT,
+        }) :
+        toast.success("Added to Like",{
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            closeButton: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            type:"success",
+            position: toast.POSITION.TOP_RIGHT,
+        })
+    return setLike(!like)
+}
+
 export const MovieCard =(
     {
         id,
@@ -93,34 +123,7 @@ export const MovieCard =(
 
 
 
-    const toggleLike =()=>{
 
-        like ? toast.error("Removed from like",{
-            autoClose: 2000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            closeButton: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-            type:"error",
-            position: toast.POSITION.TOP_RIGHT,
-        }) :
-        toast.success("Added to Like",{
-            autoClose: 2000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            closeButton: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-            type:"success",
-            position: toast.POSITION.TOP_RIGHT,
-        })
-        return setLike(!like)
-    }
     return(
         <>
 
@@ -155,7 +158,7 @@ export const MovieCard =(
                         <div>
                             <BackDrop backDrop={backDrop}>
                                 <ModalDetails>
-                                    <img src={image}/>
+                                    <img alt={"image"} src={image}/>
                                     <div>
                                         <h5>{title}</h5>
                                         <p>{description}</p>
@@ -185,18 +188,15 @@ export const MovieCard =(
                         </div>
                         <LikeAndTrailer>
                             <div>
-                                <div onClick={toggleLike}>
-
+                                <div onClick={()=>toggleLike(like,setLike)}>
                                     {
                                         like ? <FavoriteIcon className={"red"}/>
                                             :
                                             <FavoriteBorderIcon className={"red"}/>
                                     }
-
                                 </div>
 
                             </div>
-
                             <Button size={"small"} onClick={navigateToVideo}>Watch Now</Button>
                         </LikeAndTrailer>
                         <ToastContainer/>
