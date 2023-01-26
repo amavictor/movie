@@ -2,20 +2,28 @@ import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import SearchIcon from '@mui/icons-material/Search';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import MenuIcon from '@mui/icons-material/Menu';
-import {Icons, Navigation} from "./Navbar.styles";
+import {Icons, Navigation, NotificationContainer} from "./Navbar.styles";
 import Logo from "../../assests/images/Logo.png"
 import {Link, useLocation, useNavigate} from "react-router-dom";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {selectUser} from "../../store/user/user.selector";
-import {useEffect, useState} from "react";
+import {useEffect, useMemo, useState} from "react";
 import {doc, getDoc} from "firebase/firestore";
 import {firebaseDb} from "../../utils";
+import {selectLike} from "../../store/LikedCart/like.selector";
+import {getLikes} from "../../store/LikedCart/like.action";
 
 export const Navbar =()=>{
     const navigate = useNavigate()
     const location = useLocation()
     const user = useSelector(selectUser)
     const [loggedInUser,setLoggedInUser]= useState()
+
+
+    // const movieLikes = useMemo(async()=>{
+    //
+    // },[likes,user])
+
 
     useEffect(()=>{
         const getUsername =async()=>{
@@ -24,7 +32,11 @@ export const Navbar =()=>{
             setLoggedInUser(currentUser)
         }
         getUsername()
+        console.log("Likes", loggedInUser?.LikedMovies)
+        // dispatch(getLikes(movieLikes))
     },[user])
+
+
     console.log("This is loggedin user",loggedInUser)
     return(
         <Navigation className={"padding"}>
@@ -33,9 +45,10 @@ export const Navbar =()=>{
                 <MenuIcon/>
             </div>
             <Icons>
-                <div>
+                <NotificationContainer>
+                    <div><p>{loggedInUser?.LikedMovies?.length}</p></div>
                     <NotificationsNoneIcon/>
-                </div>
+                </NotificationContainer>
                 <div>
                     <SearchIcon/>
                 </div>

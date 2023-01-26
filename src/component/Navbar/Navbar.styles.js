@@ -66,4 +66,25 @@ export const RotateIcon = styled.div`
   }
 `
 
-
+export const NotificationContainer = styled.div`
+  position: relative;
+  
+  div{
+    background-color: var(--red);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    p{
+      align-self: center;
+      font-size: 10px;
+      color: white;
+      font-weight: 500;
+    }
+  }
+`

@@ -16,8 +16,10 @@ import {
     collection,
     query,
     where,
+    updateDoc
 
 } from "firebase/firestore"
+import {toast} from "react-toastify";
 
 //Base url
 export const BASE_URL = "https://api.themoviedb.org/3/"
@@ -26,6 +28,8 @@ export const TRENDING_MOVIES_BY_WEEK_URL = `${BASE_URL}trending/movie/week?api_k
 
 //Image url
 export const IMG_BASE_URL = `https://image.tmdb.org/t/p/w500`
+
+let likedMovies=[]
 
 //Search url
 export const SEARCH_MOVIE_URL = `${BASE_URL}search/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&query&page=1&include_adult=false`
@@ -93,6 +97,109 @@ export const logInWithEmailAndPassword = async(email,password)=>{
     }
 
     return user?.user?.uid
+}
+
+//Add like
+
+export const addLike = async (user,data)=>{
+    try {
+        if(likedMovies.includes(data)===false){
+            likedMovies.push(data)
+            await updateDoc(doc(firebaseDb,"users",user),{
+                LikedMovies: likedMovies
+            })
+            console.log("likedMovies", likedMovies)
+            toast.success("Added to Like",{
+                autoClose: 2000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                closeButton: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                type:"success",
+                position: toast.POSITION.TOP_RIGHT,
+            })
+        }
+        else{
+            toast.error("Already in liked movies",{
+                autoClose: 2000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                closeButton: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                type:"error",
+                position: toast.POSITION.TOP_RIGHT,
+            })
+        }
+
+    }
+    catch (e) {
+        console.log(e)
+    }
+}
+export const removeLike =async (user,data)=>{
+        if(likedMovies.includes(data)){
+            try{
+                await updateDoc(doc(firebaseDb,"users", user),{
+                    LikedMovies: likedMovies.filter((title)=>title!==data)
+                })
+                toast.error(`Removed from likes`,{
+                    autoClose: 2000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    closeButton: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                    type:"error",
+                    position: toast.POSITION.TOP_RIGHT,
+                })
+            }
+            catch (e){
+                toast.error(`Something went wrong: ${e}`,{
+                    autoClose: 2000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    closeButton: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                    type:"error",
+                    position: toast.POSITION.TOP_RIGHT,
+                })
+            }
+        }
+        else{
+            toast.error("You have not liked this movie",{
+                autoClose: 2000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                closeButton: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                type:"error",
+                position: toast.POSITION.TOP_RIGHT,
+            })
+        }
+
+}
+
+export const getLiked =async ()=>{
+    try{
+
+    }
+    catch (e) {
+
+    }
 }
 
 //User image generator functions

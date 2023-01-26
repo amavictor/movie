@@ -20,6 +20,10 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import {useLocation, useNavigate, useParams} from "react-router-dom";
 import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import {setDoc} from "firebase/firestore";
+import {addLike, firebaseDb, removeLike} from "../../utils";
+import {useSelector} from "react-redux";
+import {selectUser} from "../../store/user/user.selector";
 
 
 
@@ -41,32 +45,8 @@ export const ratingChecker=(rating)=>{
 }
 
 
-export const toggleLike =(like,setLike)=>{
-
-    like ? toast.error("Removed from like",{
-            autoClose: 2000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            closeButton: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-            type:"error",
-            position: toast.POSITION.TOP_RIGHT,
-        }) :
-        toast.success("Added to Like",{
-            autoClose: 2000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            closeButton: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-            type:"success",
-            position: toast.POSITION.TOP_RIGHT,
-        })
+export const toggleLike =async(like,setLike,user,data)=>{
+    like ? await removeLike(user,data) : await addLike(user,data)
     return setLike(!like)
 }
 
@@ -82,7 +62,7 @@ export const MovieCard =(
         movieId
     }
     )=>{
-
+    const user = useSelector(selectUser)
     const [isOpen, setIsOpen] = useState(false);
     const [opacity, setOpacity] = useState(0);
     const [like,setLike] = useState(false)
@@ -188,7 +168,7 @@ export const MovieCard =(
                         </div>
                         <LikeAndTrailer>
                             <div>
-                                <div onClick={()=>toggleLike(like,setLike)}>
+                                <div onClick={()=>toggleLike(like,setLike,user,title)}>
                                     {
                                         like ? <FavoriteIcon className={"red"}/>
                                             :
