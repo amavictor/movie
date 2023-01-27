@@ -88,3 +88,20 @@ export const NotificationContainer = styled.div`
     }
   }
 `
+export const UserSignOutComponent = styled.div`
+  position: relative;
+  :hover{
+    cursor: pointer;
+  }
+`
+export const SignOutDropDown = styled.div`
+    position: absolute;
+  width: 5rem;
+  height: 3rem;
+  padding: 0.1rem 1rem;
+  background-color: black;
+  p{
+    color: white;
+  }
+  
+`

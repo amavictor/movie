@@ -30,8 +30,6 @@ import {Footer} from "../../component/footer/footer";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import {ToastContainer} from "react-toastify";
-import {useSelector} from "react-redux";
-import {selectLike} from "../../store/LikedCart/like.selector";
 
 
 export const Home = () => {

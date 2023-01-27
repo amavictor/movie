@@ -33,9 +33,6 @@ function App() {
                 if(user) {
                     dispatch(setAuthUser(user.uid))
                 }
-                else{
-                    alert("No user found")
-                }
 
             })
 

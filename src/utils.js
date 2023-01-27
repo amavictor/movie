@@ -79,11 +79,34 @@ export const emailAndPasswordSignUp = async (email, password,username,data) => {
 
             }
             else{
-                alert("User with username already exists")
+                toast.error("Username already exists",{
+                    autoClose: 2000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    closeButton: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                    type:"error",
+                    position: toast.POSITION.TOP_RIGHT,
+                })
             }
 
     } catch (e) {
-        alert(e.message)
+
+        toast.error(e,{
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            closeButton: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            type:"error",
+            position: toast.POSITION.TOP_RIGHT,
+        })
     }
     return currentUser?.uid
 }
@@ -193,13 +216,8 @@ export const removeLike =async (user,data)=>{
 
 }
 
-export const getLiked =async ()=>{
-    try{
-
-    }
-    catch (e) {
-
-    }
+export const signOutUser =async ()=>{
+   return await signOut(auth)
 }
 
 //User image generator functions

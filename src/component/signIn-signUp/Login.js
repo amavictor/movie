@@ -83,7 +83,7 @@ export const Login = () => {
                             >Password is required.</motion.p>
                         )}
                     </label>
-                    <Button disabled={loading}>{loading ? "Loading" : "Sign Up"}</Button>
+                    <Button disabled={loading}>{loading ? "Loading" : "Sign in"}</Button>
                 </LoginForm>
             </>
 
