@@ -5,6 +5,7 @@ export const SliderCards = styled.div`
   text-align: center;
   position: relative;
   padding: 2px 7px 7px 7px;
+
   &:hover {
     background: rgba( 255, 255, 255, 0.25 );
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
@@ -36,11 +37,7 @@ export const SliderCards = styled.div`
         transition: all .5s ease;
       }
     }
-    
-   
-    
   }
-
 
   img{
       width: 200px;
@@ -50,7 +47,7 @@ export const SliderCards = styled.div`
       box-shadow: 6px 6px 10px -3px rgba(0,0,0,0.31);
       -webkit-box-shadow: 6px 6px 10px -3px rgba(0,0,0,0.31);
       -moz-box-shadow: 6px 6px 10px -3px rgba(0,0,0,0.31);
-    }
+  }
   p{
   margin: 6px auto 15px auto;
   line-height: 1;
@@ -68,7 +65,7 @@ export const SliderCards = styled.div`
     }
   }
 `
-export const HomeCircular =styled.div`
+export const HomeCircular = styled.div`
   width: 40px;
   height: 40px;
 `

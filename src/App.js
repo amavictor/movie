@@ -1,7 +1,7 @@
 import {Route, Routes} from "react-router-dom";
 import {Home} from "./Routes/Home/Home";
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect, useLayoutEffect} from "react";
+import {useEffect} from "react";
 import {fetchTrendingMoviesAsync} from "./store/Trending Movies/TrendingMovies.action";
 import {NowPlaying} from "./Routes/No playing/NowPlaying";
 import {Popular} from "./Routes/Popular/Popular";

@@ -1,21 +1,21 @@
-import {HomeCircular, HoverDetails, Pg, SliderCards} from "./SliderCard.styles";
-import {buildStyles, CircularProgressbar} from "react-circular-progressbar";
-import {ratingChecker, toggleLike} from "../Movie card/MovieCard";
-import {useContext, useState} from "react";
-import {PageProvider} from "../../context/Category.context";
+import { HomeCircular, HoverDetails, Pg, SliderCards } from "./SliderCard.styles";
+import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
+import { ratingChecker } from "../Movie card/MovieCard";
+import { useContext, useState } from "react";
+import { PageProvider } from "../../context/Category.context";
 
-export const SliderCard =({title,image,rating})=>{
-    const [like,setLike] = useState()
-    return(
+export const SliderCard = ({ title, image, rating }) => {
+    const [like, setLike] = useState()
+    return (
         <SliderCards>
             <HoverDetails >
                 <div className={"lift"}>
                     <p>{title}</p>
-                    <button onClick={()=>toggleLike(like,setLike)}>{like ? `Remove from like` : `Add to like`}</button>
+                    {/* <button onClick={() => toggleLike(like, setLike)}>{like ? `Remove from like` : `Add to like`}</button> */}
                     <button>Watch trailer</button>
                 </div>
             </HoverDetails>
-            <img alt={image} src={image}/>
+            <img alt={image} src={image} />
             <p>{title}</p>
             <div>
                 <HomeCircular>

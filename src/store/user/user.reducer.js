@@ -14,7 +14,7 @@ export const userReducer =(state = USER_STATE, action={})=>{
         case USER_ACTION_TYPE.SIGNOUT_USER:
             return {
                 ...state,
-                user:null
+                user:payload
             }
         case USER_ACTION_TYPE.LOGIN_USER:
             return {
